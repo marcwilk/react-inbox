@@ -10,33 +10,33 @@ export default class Toolbar extends React.Component {
             unread messages
           </p>
 
+          <a class="btn btn-danger">
+            <i class="fa fa-plus"></i>
+          </a>
+
           <button class="btn btn-default">
-            <i class="fa fa-square-o"></i>
+            <i class="fa fa-minus-square-o"></i>
           </button>
 
-          <button class="btn btn-default" disabled="disabled">
-            Mark As Read
-          </button>
+          <button class="btn btn-default">Mark As Read</button>
 
-          <button class="btn btn-default" disabled="disabled">
-            Mark As Unread
-          </button>
+          <button class="btn btn-default">Mark As Unread</button>
 
-          <select class="form-control label-select" disabled="disabled">
+          <select class="form-control label-select">
             <option>Apply label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
             <option value="gschool">gschool</option>
           </select>
 
-          <select class="form-control label-select" disabled="disabled">
+          <select class="form-control label-select">
             <option>Remove label</option>
             <option value="dev">dev</option>
             <option value="personal">personal</option>
             <option value="gschool">gschool</option>
           </select>
 
-          <button class="btn btn-default" disabled="disabled">
+          <button class="btn btn-default">
             <i class="fa fa-trash-o"></i>
           </button>
         </div>
