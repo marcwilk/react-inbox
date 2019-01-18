@@ -13,11 +13,23 @@ class App extends Component {
     this.setState ({messages: json})
   }
 
+  starMessage = (e) => {
+    e.preventDefault()
+    let id = e.target.id
+    console.log(id)
+    console.log("star")
+    let messagesCopy = Array.from(this.state.messages)
+    let index = messagesCopy.filter(e => e.id === id)[0]
+    console.log(index)
+    messagesCopy[index].starred = !messagesCopy[index].starred
+    this.setState ({messages: messagesCopy})
+  }
+
   render() {
     return (
       <main>
         <Toolbar />
-        <Messages messages={this.state.messages} />
+        <Messages messages={this.state.messages} starMessage={this.starMessage} />
       </main>
     )
   }

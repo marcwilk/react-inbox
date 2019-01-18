@@ -11,7 +11,7 @@ export default class Message extends React.Component {
                 <input type="checkbox" />
               </div>
               <div class="col-xs-2">
-                <i class="star fa fa-star-o"></i>
+                <i id={this.props.id} class="star fa fa-star-o" onClick={this.props.starMessage}></i>
               </div>
             </div>
           </div>

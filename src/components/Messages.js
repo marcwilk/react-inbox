@@ -13,6 +13,8 @@ export default class Messages extends React.Component {
           starred = {message.starred}
           labels = {message.labels}
           body = {message.body}
+          starMessage = {this.props.starMessage}
+          id = {message.id}
         />
       )}
     </div>
