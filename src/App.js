@@ -19,7 +19,7 @@ class App extends Component {
     console.log(id)
     console.log("star")
     let messagesCopy = Array.from(this.state.messages)
-    let index = messagesCopy.filter(e => e.id === id)[0]
+    let index = messagesCopy.filter(e => e.id === id)
     console.log(index)
     messagesCopy[index].starred = !messagesCopy[index].starred
     this.setState ({messages: messagesCopy})
