@@ -13,16 +13,25 @@ class App extends Component {
     this.setState ({messages: json})
   }
 
-  starMessage = (e) => {
-    e.preventDefault()
-    let id = e.target.id
-    console.log(id)
-    console.log("star")
+  starMessage = (id) => {
     let messagesCopy = Array.from(this.state.messages)
-    let index = messagesCopy.filter(e => e.id === id)
-    console.log(index)
-    messagesCopy[index].starred = !messagesCopy[index].starred
+    let index = messagesCopy.filter(message => message.id === id)[0]
+    let chosenIndex=index.id-1
+    let currentStatus=index.starred
+    messagesCopy[chosenIndex].starred = !currentStatus
     this.setState ({messages: messagesCopy})
+    fetch('http://localhost:8082/api/messages', {
+      method: 'PATCH',
+      body: JSON.stringify ({
+        "messageIds": [id],
+        "command": "star"
+      }),
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      }
+    })
+
   }
 
   render() {
