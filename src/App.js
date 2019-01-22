@@ -40,6 +40,18 @@ class App extends Component {
     let currentStatus = index.read
     messagesCopy[chosenIndex].read = !currentStatus
     this.setState ({messages: messagesCopy})
+    fetch('http://localhost:8082/api/messages', {
+      method: 'PATCH',
+      body: JSON.stringify ({
+        "messageIds": [id],
+        "command": "read",
+        "read": index.read
+      }),
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      }
+    })
   }
 
   selectMessage = (id) => {
