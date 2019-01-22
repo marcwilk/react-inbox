@@ -17,7 +17,7 @@ export default class Messages extends React.Component {
           id = {message.id}
           readMessage = {this.props.readMessage}
           selectMessage = {this.props.selectMessage}
-          selected = {this.props.selected}
+          selected = {message.selected}
         />
       )}
     </div>
