@@ -41,7 +41,7 @@ export default class Toolbar extends React.Component {
               <option value="gschool">gschool</option>
             </select>
 
-            <button class="btn btn-default">
+            <button onClick= {this.props.deleteMessage} class="btn btn-default">
               <i class="fa fa-trash-o"></i>
             </button>
           </div>
