@@ -82,10 +82,24 @@ class App extends Component {
     return counter
   }
 
+  markAsRead = () => {
+    let messagesCopy = Array.from(this.state.messages)
+    let indexes = messagesCopy.filter(message => message.selected === true)
+    indexes.map(selected => selected.read = true)
+    this.setState(indexes)
+  }
+
+  markAsUnread = () => {
+    let messagesCopy = Array.from(this.state.messages)
+    let indexes = messagesCopy.filter(message => message.selected === true)
+    indexes.map(selected => selected.read = false)
+    this.setState(indexes)
+  }
+
   render() {
     return (
       <main>
-        <Toolbar messages={this.state.messages} bulkSelect={this.bulkSelect} bulkDeselect={this.bulkDeselect} messageCounter={this.messageCounter}/>
+        <Toolbar messages={this.state.messages} bulkSelect={this.bulkSelect} bulkDeselect={this.bulkDeselect} messageCounter={this.messageCounter} markAsRead={this.markAsRead} markAsUnread={this.markAsUnread}/>
         <Messages messages={this.state.messages} starMessage={this.starMessage} readMessage={this.readMessage} selectMessage={this.selectMessage}/>
       </main>
     )
