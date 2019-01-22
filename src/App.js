@@ -77,10 +77,15 @@ class App extends Component {
     this.setState(newState)
   }
 
+  messageCounter = () => {
+    let counter = this.state.messages.filter(e => e.read === false).length
+    return counter
+  }
+
   render() {
     return (
       <main>
-        <Toolbar messages={this.state.messages} bulkSelect={this.bulkSelect} bulkDeselect={this.bulkDeselect}/>
+        <Toolbar messages={this.state.messages} bulkSelect={this.bulkSelect} bulkDeselect={this.bulkDeselect} messageCounter={this.messageCounter}/>
         <Messages messages={this.state.messages} starMessage={this.starMessage} readMessage={this.readMessage} selectMessage={this.selectMessage}/>
       </main>
     )
