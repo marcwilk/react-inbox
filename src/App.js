@@ -63,10 +63,20 @@ class App extends Component {
     this.setState ({messages: messagesCopy})
   }
 
+  bulkSelect = () => {
+    let newState = this.state.messages.map(message => message.selected = true)
+    this.setState(newState)
+  }
+
+  bulkDeselect = () => {
+    let newState = this.state.messages.map(message => message.selected = false)
+    this.setState(newState)
+  }
+
   render() {
     return (
       <main>
-        <Toolbar />
+        <Toolbar messages={this.state.messages} bulkSelect={this.bulkSelect} bulkDeselect={this.bulkDeselect}/>
         <Messages messages={this.state.messages} starMessage={this.starMessage} readMessage={this.readMessage} selectMessage={this.selectMessage}/>
       </main>
     )
