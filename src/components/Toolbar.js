@@ -16,7 +16,7 @@ export default class Toolbar extends React.Component {
             </a>
 
             <button onClick= {this.props.bulkSelect} class="btn btn-default">
-              <i className = {this.props.selected ? "fa fa-square-o":"fa fa-check-square-o"}></i>
+              <i className = {this.props.messages.selected ? "fa fa-square-o":"fa fa-check-square-o"}></i>
             </button>
 
             <button onClick= {this.props.bulkDeselect} class="btn btn-default">

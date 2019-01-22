@@ -64,11 +64,15 @@ class App extends Component {
   }
 
   bulkSelect = () => {
+    let checkboxes = [...document.getElementsByClassName("bulkCheck")]
+    checkboxes.map(checkbox => checkbox.checked = "checked")
     let newState = this.state.messages.map(message => message.selected = true)
     this.setState(newState)
   }
 
   bulkDeselect = () => {
+    let checkboxes = [...document.getElementsByClassName("bulkCheck")]
+    checkboxes.map(checkbox => checkbox.checked = "")
     let newState = this.state.messages.map(message => message.selected = false)
     this.setState(newState)
   }
