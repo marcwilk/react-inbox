@@ -37,20 +37,9 @@ class App extends Component {
     let messagesCopy = Array.from(this.state.messages)
     let index = messagesCopy.filter(message => message.id === id)[0]
     let chosenIndex = index.id-1
-    let currentStatus = index.selected
-    messagesCopy[chosenIndex].selected = !currentStatus
+    let currentStatus = index.read
+    messagesCopy[chosenIndex].read = !currentStatus
     this.setState ({messages: messagesCopy})
-    fetch('http://localhost:8082/api/messages', {
-      method: 'PATCH',
-      body: JSON.stringify ({
-        "messageIds": [id],
-        "command": "highlight"
-      }),
-      headers: {
-        'Content-Type':'application/json',
-        'Accept':'application/json'
-      }
-    })
   }
 
   render() {
