@@ -72,3 +72,7 @@ footer.spacer {
 .fa-close {
   cursor: pointer;
 }
+
+main {
+  background-color: white;
+}

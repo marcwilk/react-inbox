@@ -16,8 +16,8 @@ class App extends Component {
   starMessage = (id) => {
     let messagesCopy = Array.from(this.state.messages)
     let index = messagesCopy.filter(message => message.id === id)[0]
-    let chosenIndex=index.id-1
-    let currentStatus=index.starred
+    let chosenIndex = index.id-1
+    let currentStatus = index.starred
     messagesCopy[chosenIndex].starred = !currentStatus
     this.setState ({messages: messagesCopy})
     fetch('http://localhost:8082/api/messages', {
@@ -31,14 +31,33 @@ class App extends Component {
         'Accept':'application/json'
       }
     })
+  }
 
+  selectMessage = (id) => {
+    let messagesCopy = Array.from(this.state.messages)
+    let index = messagesCopy.filter(message => message.id === id)[0]
+    let chosenIndex = index.id-1
+    let currentStatus = index.selected
+    messagesCopy[chosenIndex].selected = !currentStatus
+    this.setState ({messages: messagesCopy})
+    fetch('http://localhost:8082/api/messages', {
+      method: 'PATCH',
+      body: JSON.stringify ({
+        "messageIds": [id],
+        "command": "highlight"
+      }),
+      headers: {
+        'Content-Type':'application/json',
+        'Accept':'application/json'
+      }
+    })
   }
 
   render() {
     return (
       <main>
         <Toolbar />
-        <Messages messages={this.state.messages} starMessage={this.starMessage} />
+        <Messages messages={this.state.messages} starMessage={this.starMessage} selectMessage={this.selectMessage}/>
       </main>
     )
   }

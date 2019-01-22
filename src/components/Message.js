@@ -8,10 +8,10 @@ export default class Message extends React.Component {
           <div class="col-xs-1">
             <div class="row">
               <div class="col-xs-2">
-                <input type="checkbox" />
+                <i id={this.props.id} className = {this.props.selected ? "fa fa-square":"fa fa-square-o"} onChange={(e) => this.props.selected(this.props.id)}></i>
               </div>
               <div class="col-xs-2">
-                <i id={this.props.id} className= {this.props.starred ? "fa fa-star":"fa fa-star-o"} onClick={(e)=> this.props.starMessage(this.props.id)}></i>
+                <i id={this.props.id} className = {this.props.starred ? "fa fa-star":"fa fa-star-o"} onClick={(e)=> this.props.starMessage(this.props.id)}></i>
               </div>
             </div>
           </div>

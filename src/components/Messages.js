@@ -15,6 +15,8 @@ export default class Messages extends React.Component {
           body = {message.body}
           starMessage = {this.props.starMessage}
           id = {message.id}
+          selectMessage = {this.props.selectMessage}
+          selected = {this.props.selected}
         />
       )}
     </div>
