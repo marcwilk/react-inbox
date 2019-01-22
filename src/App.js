@@ -33,7 +33,7 @@ class App extends Component {
     })
   }
 
-  selectMessage = (id) => {
+  readMessage = (id) => {
     let messagesCopy = Array.from(this.state.messages)
     let index = messagesCopy.filter(message => message.id === id)[0]
     let chosenIndex = index.id-1
@@ -42,11 +42,20 @@ class App extends Component {
     this.setState ({messages: messagesCopy})
   }
 
+  selectMessage = (id) => {
+    let messagesCopy = Array.from(this.state.messages)
+    let index = messagesCopy.filter(message => message.id === id)[0]
+    let chosenIndex = index.id-1
+    let currentStatus = index.selected
+    messagesCopy[chosenIndex].selected = !currentStatus
+    this.setState ({messages: messagesCopy})
+  }
+
   render() {
     return (
       <main>
         <Toolbar />
-        <Messages messages={this.state.messages} starMessage={this.starMessage} selectMessage={this.selectMessage}/>
+        <Messages messages={this.state.messages} starMessage={this.starMessage} readMessage={this.readMessage} selectMessage={this.selectMessage}/>
       </main>
     )
   }
