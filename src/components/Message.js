@@ -18,11 +18,13 @@ export default class Message extends React.Component {
           </div>
           <div class="col-md-9" onClick={(e) => this.props.readMessage(this.props.id)}>
             <a href="#">
-            {this.props.subject}
+              {this.props.subject}
             </a>
           </div>
-          <div class="col-md-1 label label-warning">
-          {this.props.labels}
+          <div class="col-md-1">
+            {this.props.labels? this.props.labels.includes("dev") ? <span class="label label-warning">dev</span> : "" :""}
+            {this.props.labels? this.props.labels.includes("gschool") ? <span class="label label-warning">gschool</span> : "" : ""}
+            {this.props.labels? this.props.labels.includes("personal") ? <span class="label label-warning">personal</span> : "" : ""}
           </div>
         </div>
       </div>

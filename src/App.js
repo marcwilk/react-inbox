@@ -117,11 +117,71 @@ class App extends Component {
     this.setState ({messages: json})
   }
 
+  applyLabel = (e) => {
+    const newState = {...this.state}
+    let newLabel = e.target.value
+    let selectedMessages = newState.messages.filter(message => message.selected === true)
+    selectedMessages.map(message => message.labels.push(newLabel))
+    this.setState(selectedMessages)
+  fetch('http://localhost:8082/api/messages', {
+    method: 'PATCH',
+    body: JSON.stringify ({
+      "messageIds": this.state.messages.filter(message => message.selected === true).map(message => message.id),
+      "command": "addLabel",
+      "label": e.target.value
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })
+  }
+
+  removeLabel = (e) => {
+    const newState = {...this.state}
+    let newLabel = e.target.value
+    let selectedMessages = newState.messages.filter(message => message.selected === true)
+    selectedMessages.map(message => message.labels.splice(message.labels.indexOf(newLabel), 1))
+    this.setState(selectedMessages)
+  fetch('http://localhost:8082/api/messages', {
+    method: 'PATCH',
+    body: JSON.stringify ({
+      "messageIds": this.state.messages.filter(message => message.selected === true).map(message => message.id),
+      "command": "removeLabel",
+      "label": e.target.value
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })
+  }
+
+  sendMessage = (e) => {
+
+  }
+
   render() {
     return (
       <main>
-        <Toolbar messages={this.state.messages} bulkSelect={this.bulkSelect} bulkDeselect={this.bulkDeselect} messageCounter={this.messageCounter} markAsRead={this.markAsRead} markAsUnread={this.markAsUnread} deleteMessage={this.deleteMessage}/>
-        <Messages messages={this.state.messages} starMessage={this.starMessage} readMessage={this.readMessage} selectMessage={this.selectMessage}/>
+        <Toolbar
+          messages={this.state.messages}
+          bulkSelect={this.bulkSelect}
+          bulkDeselect={this.bulkDeselect}
+          messageCounter={this.messageCounter}
+          markAsRead={this.markAsRead}
+          markAsUnread={this.markAsUnread}
+          deleteMessage={this.deleteMessage}
+          applyLabel={this.applyLabel}
+          removeLabel={this.removeLabel}
+          sendMessage={this.sendMessage}
+        />
+        <Messages
+          messages={this.state.messages}
+          starMessage={this.starMessage}
+          readMessage={this.readMessage}
+          selectMessage={this.selectMessage}
+        />
       </main>
     )
   }
