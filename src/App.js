@@ -8,7 +8,7 @@ class App extends Component {
   state = { messages: [] }
 
   async componentDidMount() {
-    const response = await fetch('http://localhost:8082/api/messages')
+    const response = await fetch('https://collective-api-mww.herokuapp.com/api/messages')
     const json = await response.json()
     this.setState ({messages: json})
   }
@@ -21,7 +21,7 @@ class App extends Component {
     this.setState({
       messages: [...this.state.messages.slice(0, selectedindex), newmessages ,...this.state.messages.slice(selectedindex+1)]
     })
-    fetch('http://localhost:8082/api/messages', {
+    fetch('https://collective-api-mww.herokuapp.com/api/messages', {
       method: 'PATCH',
       body: JSON.stringify ({
         "messageIds": [id],
@@ -42,7 +42,7 @@ class App extends Component {
     this.setState({
       messages: [...this.state.messages.slice(0, selectedindex), newmessages ,...this.state.messages.slice(selectedindex+1)]
     })
-    fetch('http://localhost:8082/api/messages', {
+    fetch('https://collective-api-mww.herokuapp.com/api/messages', {
       method: 'PATCH',
       body: JSON.stringify ({
         "messageIds": [id],
@@ -101,7 +101,7 @@ class App extends Component {
 
   deleteMessage = async () => {
     let messagesCopy = Array.from(this.state.messages)
-    await fetch('http://localhost:8082/api/messages', {
+    await fetch('https://collective-api-mww.herokuapp.com/api/messages', {
       method: 'PATCH',
       body: JSON.stringify ({
         "messageIds": messagesCopy.filter(message => message.selected === true).map(message => message.id),
@@ -112,7 +112,7 @@ class App extends Component {
         'Accept':'application/json'
       }
     })
-    const response = await fetch('http://localhost:8082/api/messages')
+    const response = await fetch('https://collective-api-mww.herokuapp.com/api/messages')
     const json = await response.json()
     this.setState ({messages: json})
   }
@@ -123,7 +123,7 @@ class App extends Component {
     let selectedMessages = newState.messages.filter(message => message.selected === true)
     selectedMessages.map(message => message.labels.push(newLabel))
     this.setState(selectedMessages)
-  fetch('http://localhost:8082/api/messages', {
+  fetch('https://collective-api-mww.herokuapp.com/api/messages', {
     method: 'PATCH',
     body: JSON.stringify ({
       "messageIds": this.state.messages.filter(message => message.selected === true).map(message => message.id),
@@ -143,7 +143,7 @@ class App extends Component {
     let selectedMessages = newState.messages.filter(message => message.selected === true)
     selectedMessages.map(message => message.labels.splice(message.labels.indexOf(newLabel), 1))
     this.setState(selectedMessages)
-  fetch('http://localhost:8082/api/messages', {
+  fetch('https://collective-api-mww.herokuapp.com/api/messages', {
     method: 'PATCH',
     body: JSON.stringify ({
       "messageIds": this.state.messages.filter(message => message.selected === true).map(message => message.id),
@@ -160,7 +160,7 @@ class App extends Component {
   sendMessage=(e)=>{
     let subject = e.target.subject.value
     let body = e.target.body.value
-    fetch('http://localhost:8082/api/messages', {
+    fetch('https://collective-api-mww.herokuapp.com/api/messages', {
       method: 'POST',
       body: JSON.stringify({
         subject: e.target.subject.value,
