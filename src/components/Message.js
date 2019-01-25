@@ -1,5 +1,4 @@
 import React from 'react'
-import Toolbar from './Toolbar.js'
 
 export default class Message extends React.Component {
   render() {

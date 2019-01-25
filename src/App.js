@@ -157,8 +157,24 @@ class App extends Component {
   })
   }
 
-  sendMessage = (e) => {
-
+  sendMessage=(e)=>{
+    let subject = e.target.subject.value
+    let body = e.target.body.value
+    fetch('http://localhost:8082/api/messages', {
+      method: 'POST',
+      body: JSON.stringify({
+        subject: e.target.subject.value,
+        body: e.target.body.value,
+        selected: false,
+        read: false,
+        starred: false,
+        labels: [],
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
   }
 
   render() {
